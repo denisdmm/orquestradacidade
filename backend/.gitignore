@@ -1,0 +1,31 @@
+# Laravel
+/vendor/
+/node_modules/
+
+# Arquivo de configuração do ambiente
+.env
+.env.*.php
+
+# Logs e cache
+/storage/*.key
+/storage/debugbar/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# Arquivos gerados pelo Laravel Mix
+/public/hot
+/public/storage
+/public/mix-manifest.json
+/public/css/*
+/public/js/*
+
+# IDEs e arquivos do sistema
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Composer lock (você pode versionar se quiser, mas normalmente não)
+composer.lock

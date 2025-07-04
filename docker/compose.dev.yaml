@@ -1,0 +1,67 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile
+    depends_on:
+      - mysql
+    volumes:
+      - ../backend:/var/www/html/backend
+      - ../frontend:/var/www/html/frontend
+    networks:
+      - laravelnet
+
+
+  backend:
+    build:
+      context: ../backend/
+      dockerfile: ../docker/backend/Dockerfile
+    volumes:
+      - ../backend:/var/www/html/backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - laravelnet
+
+  frontend:
+    build:
+      context: ../frontend/
+      dockerfile: ../docker/frontend/Dockerfile
+    volumes:
+      - ../frontend:/var/www/html/frontend
+    working_dir: /app
+    command: npm start
+    ports:
+      - "4200:4200"
+    networks:
+      - laravelnet
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    networks:
+      - laravelnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - laravelnet
+
+networks:
+  laravelnet:
+    driver: bridge

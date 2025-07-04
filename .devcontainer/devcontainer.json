@@ -1,0 +1,35 @@
+{
+  "name": "Orquestra Dev - Fullstack",
+  "dockerComposeFile": ["../docker/compose.dev.yaml"],
+  "service": "web",
+  "workspaceFolder": "/var/www/html",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ryannaddy.laravel-artisan",
+        "onecentlin.laravel-blade",
+        "bmewburn.vscode-intelephense-client",
+	    "angular.ng-template",
+	    "christian-kohler.npm-intellisense",
+	    "firsttris.vscode-jest-runner",
+		"esbenp.prettier-vscode",
+		"github.copilot-chat",
+		"github.copilot-labs",
+		"github.copilot",
+		"angular.ng-template",
+		"christian-kohler.path-intellisense",
+		"vscjava.vscode-java-pack",
+		"pitoval.vscode-boot-dev-pack",
+      ]	
+    }
+  },
+  "postCreateCommand": "cd backend && composer install && cp .env.example .env && php artisan key:generate && cd ../frontend && npm install",
+  "forwardPorts": [8000, 4201, 4200, 4400, 9229],
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+//   "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+   }
+}
+
