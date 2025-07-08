@@ -23,7 +23,7 @@
       ]	
     }
   },
-  "postCreateCommand": "cd backend && composer install && cp .env.example .env && php artisan key:generate && cd ../frontend && npm install",
+  "postCreateCommand": "cd backend && composer install && cp .env.example .env && php artisan key:generate && cd ../frontend && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && npm install",
   "forwardPorts": [8000, 4201, 4200, 4400, 9229],
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 //   "remoteUser": "vscode",
